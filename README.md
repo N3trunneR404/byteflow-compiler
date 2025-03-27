@@ -1,178 +1,165 @@
 # ByteFlow Compiler
 
-A compiler that translates C-like code into ByteFlow (a minimalist language similar to Brainfuck). This project demonstrates compiler construction principles including lexical analysis, parsing, and code generation.
+<div align="center">
+  <img src="https://img.shields.io/badge/language-Python-blue.svg">
+  <img src="https://img.shields.io/badge/version-1.0.0-green.svg">
+  <img src="https://img.shields.io/badge/license-MIT-orange.svg">
+</div>
+
+ByteFlow Compiler is a robust compiler implementation for the ByteFlow programming language, developed as part of a Compiler Design course assignment. It features a complete compilation pipeline including lexical analysis, parsing, optimization, and code generation.
 
 ## 🚀 Features
 
-- Lexical analysis with token generation
-- Recursive descent parsing
-- Function compilation
-- Global variable support
-- Control flow statements (if, while, for, switch)
-- Array support
-- Direct ByteFlow code generation
+- **C-like Syntax**: Familiar syntax for developers with C/C++ background
+- **Rich Language Features**:
+  - Basic data types (int, bool, char)
+  - Control structures (if-else, loops, switch-case)
+  - Functions with parameters
+  - Arrays and complex expressions
+  - Input/output operations
+- **Optimization**: Built-in code optimization capabilities
+- **Error Handling**: Comprehensive error detection and reporting
+- **Example Programs**: Various sample programs demonstrating language features
+
+## 📋 Table of Contents
+
+- [Installation](#installation)
+- [Usage](#usage)
+- [Project Structure](#project-structure)
+- [Language Syntax](#language-syntax)
+- [Examples](#examples)
+- [Contributing](#contributing)
+- [Team](#team)
+- [License](#license)
+
+## 🔧 Installation
+
+1. Clone the repository:
+```bash
+git clone https://github.com/yourusername/byteflow-compiler.git
+cd byteflow-compiler
+```
+
+2. Ensure you have Python 3.x installed
+3. No additional dependencies required!
+
+## 💻 Usage
+
+To compile a ByteFlow program:
+
+```bash
+python byteflow.py <input_file.code> [options]
+```
+
+Options:
+- `-o, --optimize`: Enable code optimization
+- `-v, --verbose`: Enable verbose output
+- `-h, --help`: Show help message
+
+To run a compiled program:
+```bash
+python Interpreter.py <compiled_file.bf>
+```
 
 ## 📁 Project Structure
 
 ```
 byteflow-compiler/
 ├── Compiler/
-│   ├── __init__.py
-│   ├── Compiler.py          # Main compiler implementation
-│   ├── Exceptions.py        # Custom exception definitions
-│   ├── FunctionCompiler.py  # Function compilation logic
-│   ├── Functions.py         # Function handling utilities
-│   ├── General.py          # General utility functions
-│   ├── Globals.py          # Global variable management
-│   ├── Lexical_analyzer.py # Tokenization logic
-│   ├── LibraryFunctions.py # Built-in library functions
-│   ├── Minify.py          # Code minification utilities
-│   ├── Node.py            # AST node implementations
-│   ├── Optimizer.py       # Code optimization
-│   ├── Parser.py          # Token parsing implementation
-│   └── Token.py           # Token class definition
+│   ├── Lexical_analyzer.py   # Tokenization
+│   ├── Parser.py            # Syntax analysis
+│   ├── FunctionCompiler.py  # Function compilation
+│   ├── Optimizer.py        # Code optimization
+│   └── ...
 ├── examples/
-│   ├── arrays.bf          # Array usage examples
-│   ├── calc.bf            # Calculator implementation
-│   └── games/
-│       └── snake.bf       # Snake game implementation
-├── Interpreter.py
-├── .gitignore
-├── .gitattributes
-├── byteflow.py           # Main entry point
-└── README.md             # Project documentation
+│   ├── calc.code           # Calculator example
+│   ├── arrays.code         # Array operations
+│   ├── bitwise.code        # Bitwise operations
+│   └── games/              # Game examples
+├── byteflow.py             # Main compiler entry
+├── Interpreter.py          # ByteFlow interpreter
+└── README.md
 ```
 
-### Added Files Description
+## 🔤 Language Syntax
 
-- **`Exceptions.py`**: Defines custom exceptions for error handling
-- **`Functions.py`**: Contains utilities for function handling and management
-- **`General.py`**: Houses general-purpose utility functions used across the compiler
-- **`Globals.py`**: Manages global variable declarations and scope
-- **`LibraryFunctions.py`**: Implements built-in library functions
-- **`Minify.py`**: Provides code minification capabilities
-
-These additions enhance the compiler's functionality with better error handling, global variable management, library function support, and code optimization capabilities.
-
-## 🛠️ Installation
-
-1. Clone the repository:
-```bash
-git clone https://github.com/N3trunnelRR404/byteflow-compiler.git
-cd byteflow-compiler
-```
-
-2. Ensure you have Python 3.11 or higher installed:
-```bash
-python --version
-```
-
-## 📖 Usage
-
-### Basic Compilation
-```bash
-python byteflow.py input_file.bf
-```
-
-### Example Program
+### Basic Program Structure
 ```c
-// example.bf
 int main() {
-    int a = 5;
-    int b = 10;
+    // Your code here
+    return 0;
+}
+```
+
+### Data Types
+- `int`: Integer values
+- `bool`: Boolean values (true/false)
+- `char`: Character values
+- `void`: For functions with no return value
+
+### Control Structures
+```c
+// If-else
+if (condition) {
+    // code
+} else {
+    // code
+}
+
+// Loops
+while (condition) {
+    // code
+}
+
+for (init; condition; increment) {
+    // code
+}
+
+// Switch
+switch (value) {
+    case 1: // code; break;
+    default: // code;
+}
+```
+
+## 📝 Examples
+
+### Calculator Program
+```c
+int main() {
+    print("Enter two numbers: ");
+    int a = readint();
+    int b = readint();
     print("Sum is: ");
-    print(a + b);
+    printint(a + b);
     return 0;
 }
 ```
 
-### Run the Example
-```bash
-python byteflow.py examples/example.bf
-```
-
-## 🔍 Language Features
-
-### Supported Types
-- `int` - Integer values
-- Arrays (multi-dimensional supported)
-
-### Control Flow
-- `if`/`else` statements
-- `while` loops
-- `for` loops
-- `switch`/`case` statements
-- `break` statements
-
-### Functions
-- Function definitions with parameters
-- Return values
-- Recursive function calls
-
-### Input/Output
-- `print` statement for output
-- Basic input operations
-
-## 🔧 Development
-
-### Running Tests
-```bash
-python -m unittest discover tests
-```
-
-### Adding New Features
-1. Implement the feature in appropriate module
-2. Add test cases in `tests/` directory
-3. Update documentation
-4. Submit pull request
-
-## 📝 Code Examples
-
-### Array Operations
-```c
-int main() {
-    int arr[5];
-    int i;
-    for(i = 0; i < 5; i++) {
-        arr[i] = i * 2;
-    }
-    return 0;
-}
-```
-
-### Function Definition
-```c
-int fibonacci(int n) {
-    if(n <= 1) {
-        return n;
-    }
-    return fibonacci(n-1) + fibonacci(n-2);
-}
-```
+More examples can be found in the `examples/` directory.
 
 ## 🤝 Contributing
 
 1. Fork the repository
-2. Create feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit changes (`git commit -m 'Add amazing feature'`)
-4. Push to branch (`git push origin feature/amazing-feature`)
-5. Open pull request
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## 👥 Team
+
+- **Vikas** - *Core Compiler Implementation*
+- **Shubhankar** - *Parser and Optimization*
+- **Edukondulu** - *Lexical Analysis and Examples*
+
+Project developed as part of the Compiler Design course assignment.
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## ⭐ Acknowledgments
+## 🙏 Acknowledgments
 
-- Inspired by the Brainfuck programming language
-- Built with modern Python features
-- Thanks to all contributors
-
-## 🐛 Known Issues
-
-- Limited optimization capabilities due to direct ByteFlow code generation
-- No intermediate representation (IR) stage
-- Limited support for floating-point operations
-
-## 📬 Contact
-Made by: Shubhankar, Vikas, Edukondulu
+- Thanks to our course instructor for guidance
+- Inspired by modern compiler design principles
+- Built with love for programming language theory
