@@ -81,6 +81,56 @@ byteflow-compiler/
 └── README.md
 ```
 
+
+## 🔄 Transition Diagram
+
+Below is the **state transition diagram** representing the compilation process of ByteFlow, from source code to execution:
+
+```mermaid
+stateDiagram-v2
+    [*] --> SourceCode: Input .code file
+    
+    SourceCode --> LexicalAnalysis: analyze()
+    
+    LexicalAnalysis --> TokenStream: Tokens
+    note right of TokenStream: Token types include INT, VOID, ID
+    
+    TokenStream --> OptimizeTokens: if optimize_code=True
+    TokenStream --> Parser: if optimize_code=False
+    OptimizeTokens --> Parser: optimized tokens
+    
+    Parser --> GlobalDefinitions: process_global_definitions()
+    Parser --> FunctionDefinitions: create_function_object()
+    
+    state GlobalDefinitions {
+        [*] --> Variables
+        [*] --> Arrays
+        Variables --> InitCode: compile_global_variable_definition()
+        Arrays --> InitCode: compile_global_variable_definition()
+    }
+    
+    state FunctionDefinitions {
+        [*] --> MainFunction: check_main()
+        [*] --> LibraryFunctions: insert_library_functions()
+        [*] --> UserFunctions: process functions
+    }
+    
+    GlobalDefinitions --> ByteFlowCode: Generate code
+    FunctionDefinitions --> ByteFlowCode: Generate code
+    
+    ByteFlowCode --> Minification: if minify=True
+    ByteFlowCode --> FinalOutput: if minify=False
+    Minification --> FinalOutput: minified code
+    
+    FinalOutput --> [*]: Output .bf file
+    
+    state "Error Handling" as ErrorState
+    LexicalAnalysis --> ErrorState: BFSyntaxError
+    Parser --> ErrorState: BFSemanticError
+    GlobalDefinitions --> ErrorState: BFSyntaxError
+    FunctionDefinitions --> ErrorState: BFSemanticError
+```
+
 ## 🔤 Language Syntax
 
 ### Basic Program Structure
