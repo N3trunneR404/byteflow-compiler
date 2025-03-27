@@ -6,7 +6,7 @@
   <img src="https://img.shields.io/badge/license-MIT-orange.svg">
 </div>
 
-ByteFlow Compiler is a robust compiler implementation for the ByteFlow programming language, developed as part of a Compiler Design course assignment. It features a complete compilation pipeline including lexical analysis, parsing, optimization, and code generation.
+ByteFlow Compiler is a robust and innovative compiler implementation for the ByteFlow programming language, developed as part of a Compiler Design course assignment. Unlike traditional compilers that use standard intermediate representations (IR) like Three-Address Code (TAC) or LLVM IR, ByteFlow takes a unique approach by leveraging Turing Machine concepts, inspired by the Brainfuck language, to process and execute code. We designed both the source language and the execution model from scratch, ensuring full control over the compilation pipeline, including lexical analysis, parsing, optimization, and code generation. Instead of generating traditional machine code or assembly, our compiler produces target code that runs on a custom execution model, managing memory as an infinite tape with pointer-based operations. This project not only explores compiler design principles but also challenges conventional paradigms by redefining how code transformation and execution can be approached.
 
 ## 🚀 Features
 
@@ -148,9 +148,9 @@ More examples can be found in the `examples/` directory.
 
 ## 👥 Team
 
-- **Vikas** - *Core Compiler Implementation*
-- **Shubhankar** - *Parser and Optimization*
-- **Edukondulu** - *Lexical Analysis and Examples*
+- **Shubhankar (122CS0047)** - *Core Compiler Implementation*
+- **Vikas (122CS0079)** - *Lexer, Parser and Optimization*
+- **Edukondulu (122CS0074)** - *Library functions and Examples*
 
 Project developed as part of the Compiler Design course assignment.
 
